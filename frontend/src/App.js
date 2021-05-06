@@ -28,6 +28,16 @@ function App() {
   const [user, setUser] = useState("");
   const [logged, setLogged] = useState(false);
   const [products, setProducts] = useState([]);
+  const [api, setApi] = useState("");
+
+  useEffect(() => {
+    const mode = process.env.NODE_ENV;
+    if (mode === "development") {
+      setApi("http://localhost:3001");
+    } else {
+      setApi("https://prints-by-emily-backend.herokuapp.com");
+    }
+  }, []);
 
   const userId = async () => {
     const localId = localStorage.getItem("_id");
@@ -43,7 +53,7 @@ function App() {
             userId: localId,
           }),
         };
-        const response = await fetch("/api/cart/get", params);
+        const response = await fetch(`${api}/api/cart/get`, params);
         const data = await response.json();
         if (data !== null) {
           setCart(data.cart);
@@ -72,14 +82,14 @@ function App() {
       }),
     };
     if (cart.length === 0) {
-      await fetch("/api/cart/remove", params);
+      await fetch(`${api}/api/cart/remove`, params);
     } else {
-      await fetch("/api/cart/update", params);
+      await fetch(`${api}/api/cart/update`, params);
     }
   };
 
   const productFetcher = async () => {
-    const response = await fetch("/api/products");
+    const response = await fetch(`${api}/api/products`);
     const data = await response.json();
 
     setProducts(data);
@@ -130,7 +140,7 @@ function App() {
       method: "POST",
     };
 
-    const response = await fetch("/api/auth/logout", params);
+    const response = await fetch(`${api}/api/auth/logout`, params);
     const data = await response.json();
     console.log(data);
     setUser("");
@@ -165,7 +175,7 @@ function App() {
       credentials: "include",
     };
 
-    const fetchResponse = await fetch("/cookie", params);
+    const fetchResponse = await fetch(`${api}/cookie`, params);
     const data = fetchResponse;
     console.log(data);
   };
@@ -197,13 +207,14 @@ function App() {
               <Cart cart={cart} setCart={setCart} cartPrice={cartPrice} />
             </Route>
             <Route path="/admin/upload">
-              <Uploader logged={logged} />
+              <Uploader logged={logged} api={api} />
             </Route>
             <Route path="/admin">
               <Login
                 user={user}
                 setUser={setUser}
                 logoutHandler={logoutHandler}
+                api={api}
               />
             </Route>
             <Route path="/checkout" exact>
@@ -213,6 +224,7 @@ function App() {
                 cartPrice={cartPrice}
                 orderArray={orderArray}
                 setOrderArray={setOrderArray}
+                api={api}
               />
             </Route>
             <Route path="/checkout/thank-you">

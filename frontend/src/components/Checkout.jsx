@@ -7,7 +7,7 @@ const stripePromise = loadStripe(
   "pk_test_51InS7ZCD5jsRgj0F2vkOhLQ62RhK2Jd2Xg3J5s8lrNuKqyqsD9mAudJgYSkx9EpvafgwLZAi2zOMOtEX4HvH14Tm009drZozLi"
 );
 
-const Checkout = ({ cartPrice, orderArray, setCart }) => {
+const Checkout = ({ cartPrice, orderArray, setCart, api }) => {
   const priceFormatter = new Intl.NumberFormat("en-UK", {
     style: "currency",
     currency: "GBP",
@@ -120,7 +120,7 @@ const Checkout = ({ cartPrice, orderArray, setCart }) => {
       }),
     };
 
-    const response = await fetch("/api/order/create-intent", params);
+    const response = await fetch(`${api}/api/order/create-intent`, params);
     const data = await response.json();
     const clientSecret = data.client_secret;
 
@@ -150,7 +150,7 @@ const Checkout = ({ cartPrice, orderArray, setCart }) => {
             items: orderArray,
           }),
         };
-        const savedResponse = await fetch("/api/order", params);
+        const savedResponse = await fetch(`${api}/api/order`, params);
         const prodigiData = await savedResponse.json();
         console.log(prodigiData);
 
@@ -166,7 +166,10 @@ const Checkout = ({ cartPrice, orderArray, setCart }) => {
             }),
           };
 
-          const response = await fetch("/api/order/complete", completeParams);
+          const response = await fetch(
+            `${api}/api/order/complete`,
+            completeParams
+          );
           const data = await response.json();
           console.log(data);
         }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Preview from "./Preview";
 
-const Uploader = ({ logged }) => {
+const Uploader = ({ logged, api }) => {
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [success, setSuccess] = useState(false);
   const [url, setUrl] = useState("");
@@ -114,7 +114,7 @@ const Uploader = ({ logged }) => {
     console.log("Preparing upload");
 
     axios
-      .post("http://localhost:3001/api/sign_s3", {
+      .post(`${api}/api/sign_s3`, {
         fileName: fileName,
         fileType: fileType,
       })
@@ -153,10 +153,7 @@ const Uploader = ({ logged }) => {
       body: JSON.stringify(product),
     };
     try {
-      const fetchResponse = await fetch(
-        "http://localhost:3001/api/products/new",
-        options
-      );
+      const fetchResponse = await fetch(`${api}/api/products/new`, options);
 
       const data = await fetchResponse.json();
       console.log(data);

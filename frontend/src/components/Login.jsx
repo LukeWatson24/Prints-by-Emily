@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Cookie from "js-cookie";
 
-const Login = ({ setUser, user, logoutHandler }) => {
+const Login = ({ setUser, user, logoutHandler, api }) => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
@@ -30,7 +30,7 @@ const Login = ({ setUser, user, logoutHandler }) => {
       }),
     };
 
-    const response = await fetch("/api/auth/login", params);
+    const response = await fetch(`${api}/api/auth/login`, params);
     const data = await response.json();
 
     if (data.username) {
