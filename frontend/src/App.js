@@ -32,9 +32,10 @@ function App() {
 
   useEffect(() => {
     const mode = process.env.NODE_ENV;
+    console.log(mode);
     if (mode === "development") {
       setApi("http://localhost:3001");
-    } else {
+    } else if (mode === "production") {
       setApi("https://prints-by-emily-backend.herokuapp.com");
     }
   }, []);
