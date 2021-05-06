@@ -88,6 +88,6 @@ app.use("/api/order", order);
 app.use("/api/cart", cart);
 
 //Listening
-app.listen(3001, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log("Server is up!");
 });
