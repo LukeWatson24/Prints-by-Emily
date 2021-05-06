@@ -28,17 +28,19 @@ function App() {
   const [user, setUser] = useState("");
   const [logged, setLogged] = useState(false);
   const [products, setProducts] = useState([]);
-  const [api, setApi] = useState("");
+  const [api, setApi] = useState(
+    "https://prints-by-emily-backend.herokuapp.com"
+  );
 
-  useEffect(() => {
-    const mode = process.env.NODE_ENV;
-    console.log(mode);
-    if (mode === "development") {
-      setApi("http://localhost:3001");
-    } else if (mode === "production") {
-      setApi("https://prints-by-emily-backend.herokuapp.com");
-    }
-  }, []);
+  // useEffect(() => {
+  //   const mode = process.env.NODE_ENV;
+  //   console.log(mode);
+  //   if (mode === "development") {
+  //     setApi("http://localhost:3001");
+  //   } else if (mode === "production") {
+  //     setApi("https://prints-by-emily-backend.herokuapp.com");
+  //   }
+  // }, []);
 
   const userId = async () => {
     const localId = localStorage.getItem("_id");
