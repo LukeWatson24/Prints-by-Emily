@@ -34,7 +34,9 @@ function App() {
   const [id, setId] = useState("");
   const [logged, setLogged] = useState(false);
   const [products, setProducts] = useState([]);
-  const [api, setApi] = useState("http://localhost:3001");
+  const [api, setApi] = useState(
+    "https://prints-by-emily-backend.herokuapp.com"
+  );
 
   useEffect(() => {
     const mode = process.env.NODE_ENV;
