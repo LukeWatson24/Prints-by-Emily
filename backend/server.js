@@ -45,31 +45,31 @@ app.use(
   })
 );
 
-//BELOW IS COPIED
-const corsOptions = {
-  origin: /\.your.domain\.com$/, // reqexp will match all prefixes
-  methods: "GET,HEAD,POST,PATCH,DELETE,OPTIONS",
-  credentials: true, // required to pass
-  allowedHeaders: "Content-Type, Authorization, X-Requested-With",
-};
+// //BELOW IS COPIED
+// const corsOptions = {
+//   origin: /\.your.domain\.com$/, // reqexp will match all prefixes
+//   methods: "GET,HEAD,POST,PATCH,DELETE,OPTIONS",
+//   credentials: true, // required to pass
+//   allowedHeaders: "Content-Type, Authorization, X-Requested-With",
+// };
 
-// intercept pre-flight check for all routes
-app.options("*", cors(corsOptions));
+// // intercept pre-flight check for all routes
+// app.options("*", cors(corsOptions));
 
-// add cors middleware to route
-app.get("/cookie", cors(corsOptions), (req, res) => {
-  const options = {
-    secure: false,
-    httpOnly: false,
-    domain: ".your.domain.com",
-  };
+// // add cors middleware to route
+// app.get("/cookie", cors(corsOptions), (req, res) => {
+//   const options = {
+//     secure: false,
+//     httpOnly: false,
+//     domain: ".your.domain.com",
+//   };
 
-  return res
-    .cookie("cookieName", "cookieValue", options)
-    .status(200)
-    .send("cookie sent");
-});
-//END OF COPY
+//   return res
+//     .cookie("cookieName", "cookieValue", options)
+//     .status(200)
+//     .send("cookie sent");
+// });
+// //END OF COPY
 
 //Passport middlewares
 app.use(passport.initialize());

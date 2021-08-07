@@ -55,6 +55,7 @@ const Product = ({ item, cart, setCart }) => {
 
   return (
     <div className="product-wrapper">
+      <div className="block"></div>
       <div className="product-left">
         <img src={item.src} alt={item.name} />
       </div>
@@ -86,9 +87,9 @@ const Product = ({ item, cart, setCart }) => {
           ))}
         </select>
         {sku === undefined || sku === "" ? (
-          <h3>Choose a size</h3>
+          <p className="price">Choose a size</p>
         ) : (
-          <h3>{priceFormatter.format(displayPrice)}</h3>
+          <p className="price">{priceFormatter.format(displayPrice)}</p>
         )}
         <Link to="/shop">
           <button

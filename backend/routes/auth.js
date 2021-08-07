@@ -64,6 +64,33 @@ router.post("/logout", async (req, res) => {
   }
 });
 
+router.post("/verify", async (req, res) => {
+  const usernameValid = await User.findOne({ username: req.body.username });
+  if (usernameValid) {
+    if (usernameValid._id == req.body.id) {
+      try {
+        res.json({ validation: "success" });
+      } catch (error) {
+        res.json({ message: error });
+      }
+    } else {
+      try {
+        res.json({
+          validation: "failed",
+        });
+      } catch (error) {
+        res.json({ message: error });
+      }
+    }
+  } else {
+    try {
+      res.json({ validation: "failed" });
+    } catch (error) {
+      res.json({ message: error });
+    }
+  }
+});
+
 // router.get("/user", async (req, res) => {
 //   const isLogged = await Session.findOne(req.user._id);
 

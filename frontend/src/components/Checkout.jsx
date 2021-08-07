@@ -19,6 +19,7 @@ const Checkout = ({ cartPrice, orderArray, setCart, api }) => {
   const CARD_ELEMENT_OPTIONS = {
     style: {
       base: {
+        width: "100px",
         color: "#32325d",
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: "antialiased",
@@ -109,7 +110,7 @@ const Checkout = ({ cartPrice, orderArray, setCart, api }) => {
       return;
     }
 
-    const intentPrice = cartPrice * 100;
+    const intentPrice = Math.round(cartPrice * 100);
     const params = {
       method: "POST",
       headers: {
@@ -184,59 +185,79 @@ const Checkout = ({ cartPrice, orderArray, setCart, api }) => {
     <Redirect to="/checkout/thank-you" />
   ) : (
     <div className="checkout-div">
-      <h1>Checkout Page</h1>
+      <div className="block"></div>
+      <h1>Checkout</h1>
       <h3>{`Total: ${priceFormatter.format(cartPrice)}`}</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-name-email">
-          <label htmlFor="name">Full Name:</label>
-          <input onChange={handleNameChange} type="text" name="name" required />
-          <label htmlFor="email">Email:</label>
-          <input
-            onChange={handleNameChange}
-            type="email"
-            name="email"
-            required
-          />
+          <div className="name label-container">
+            <label htmlFor="name">Full Name: </label>
+            <input
+              onChange={handleNameChange}
+              type="text"
+              name="name"
+              required
+            />
+          </div>
+          <div className="email label-container">
+            <label htmlFor="email">Email: </label>
+            <input
+              onChange={handleNameChange}
+              type="email"
+              name="email"
+              required
+            />
+          </div>
         </div>
         <div className="form-address">
-          <label htmlFor="line1">Address line 1:</label>
-          <input
-            onChange={handleAddressChange}
-            type="text"
-            name="line1"
-            required
-          />
-          <label htmlFor="line2">Address line 2:</label>
-          <input
-            onChange={handleAddressChange}
-            type="text"
-            name="line2"
-            required
-          />
-          <label htmlFor="country">Country:</label>
-          <select
-            onChange={handleAddressChange}
-            name="country"
-            value={address.country}
-            required
-          >
-            <option value="GB">United Kingdom</option>
-            <option value="US">United States</option>
-          </select>
-          <label htmlFor="towncity">Town or City:</label>
-          <input
-            onChange={handleAddressChange}
-            type="text"
-            name="towncity"
-            required
-          />
-          <label htmlFor="postal">Postcode:</label>
-          <input
-            onChange={handlePostcodeChange}
-            type="text"
-            name="postal"
-            required
-          />
+          <div className="address1 label-container">
+            <label htmlFor="line1">Address line 1: </label>
+            <input
+              onChange={handleAddressChange}
+              type="text"
+              name="line1"
+              required
+            />
+          </div>
+          <div className="address2 label-container">
+            <label htmlFor="line2">Address line 2: </label>
+            <input
+              onChange={handleAddressChange}
+              type="text"
+              name="line2"
+              required
+            />
+          </div>
+          <div className="country label-container">
+            <label htmlFor="country">Country: </label>
+            <select
+              onChange={handleAddressChange}
+              name="country"
+              value={address.country}
+              required
+            >
+              <option value="GB">United Kingdom</option>
+              <option value="US">United States</option>
+            </select>
+          </div>
+          <div className="town-city label-container">
+            <label htmlFor="towncity">Town or City: </label>
+            <input
+              onChange={handleAddressChange}
+              type="text"
+              name="towncity"
+              required
+            />
+          </div>
+          <div className="postcode label-container">
+            <label htmlFor="postal">Postcode: </label>
+            <input
+              onChange={handlePostcodeChange}
+              type="text"
+              name="postal"
+              required
+            />
+          </div>
         </div>
         <CardElement options={CARD_ELEMENT_OPTIONS} />
         <button

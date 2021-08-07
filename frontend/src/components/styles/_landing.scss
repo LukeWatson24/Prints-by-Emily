@@ -1,0 +1,57 @@
+.landing-container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  img {
+    position: absolute;
+    z-index: -10;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+  }
+
+  .landing-content {
+    height: 120px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    h1 {
+      font-family: $font-body;
+      font-size: 30px;
+      font-weight: 400;
+      color: white;
+      margin: -10px;
+    }
+
+    p {
+      font-family: $font-body;
+      font-size: 16px;
+      font-weight: 300;
+      color: white;
+    }
+
+    button {
+      background: none;
+      border: 2px solid $color-pink;
+      padding: 0px 5px;
+    }
+  }
+}
+
+@media (min-width: $screen-desktop-small) {
+  .landing-container {
+    .landing-content {
+      h1 {
+        font-size: 36px;
+      }
+    }
+  }
+}
+
+.test {
+  height: 100vh;
+}

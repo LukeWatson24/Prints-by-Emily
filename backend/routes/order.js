@@ -44,8 +44,12 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/complete", async (req, res) => {
+  const paymentIntentFull = req.body.paymentIntent;
+
+  delete paymentIntentFull.paymentIntent.client_secret;
+
   const order = new CompleteOrder({
-    paymentIntent: req.body.paymentIntent,
+    paymentIntent: paymentIntentFull,
     ProdigiOutcome: req.body.ProdigiOutcome,
   });
 

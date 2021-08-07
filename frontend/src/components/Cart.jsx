@@ -10,9 +10,10 @@ const Cart = ({ cart, setCart, cartPrice }) => {
 
   return (
     <div className="cart-div">
+      <div className="block"></div>
       <h1>Cart</h1>
       {cart.length === 0 ? (
-        <h3>Your cart is empty</h3>
+        <p>Your cart is empty</p>
       ) : (
         cart.map((item) => {
           return (
@@ -35,8 +36,8 @@ const Cart = ({ cart, setCart, cartPrice }) => {
       )}
 
       {cart.length !== 0 ? (
-        <div className="">
-          <h3>{`Total: ${priceFormatter.format(cartPrice)}`}</h3>
+        <div className="cart-total-div">
+          <p>{`Total: ${priceFormatter.format(cartPrice)}`}</p>
           <Link to="/checkout">
             <button>Checkout</button>
           </Link>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import Cookie from "js-cookie";
 
-const Login = ({ setUser, user, logoutHandler, api }) => {
+const Login = ({ setUser, user, logoutHandler, api, setId }) => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
@@ -34,11 +34,14 @@ const Login = ({ setUser, user, logoutHandler, api }) => {
     const data = await response.json();
 
     if (data.username) {
-      setUser(data.username);
       setError("");
       Cookie.set("Admin", data.username);
+      Cookie.set("id", data.user);
+      setUser(data.username);
+      setId(data.user);
+
       console.log(data.username, data.user);
-    } else if (data.errors) {
+    } else {
       setError(data.message);
       console.log(data.message);
     }

@@ -1,0 +1,100 @@
+.checkout-div {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    margin-top: 20px;
+    font-family: $font-body;
+    font-weight: 900;
+  }
+
+  h3 {
+    font-family: $font-body;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+
+    .__PrivateStripeElement {
+      width: 300px;
+    }
+
+    .StripeElement {
+      margin-bottom: 15px;
+    }
+  }
+
+  label,
+  select {
+    font-family: $font-body;
+    font-size: 16px;
+  }
+
+  select {
+    font-size: 14px;
+  }
+
+  .form-name-email,
+  .form-address {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 292px;
+    margin-bottom: 15px;
+  }
+
+  .label-container {
+    margin-bottom: 5px;
+  }
+
+  .name.label-container {
+    margin-top: 10px;
+  }
+
+  .country.label-container {
+    select {
+      width: 173px;
+    }
+  }
+
+  button {
+    padding: 8px 10px;
+    color: white;
+    background: $color-green;
+    border: none;
+    outline: white solid 2px;
+    outline-offset: -5px;
+    transition: 0.2s ease;
+    font-family: $font-body;
+    font-size: 16px;
+  }
+
+  .return-home {
+    margin-top: 20px;
+  }
+
+  button:hover {
+    background: $color-darkgreen;
+    cursor: pointer;
+  }
+
+  button:disabled:hover {
+    background: $color-green;
+    cursor: not-allowed;
+  }
+
+  button:disabled {
+    opacity: 0.25;
+  }
+}
+
+@media (min-width: $screen-desktop-small) {
+  .checkout-div {
+    margin-top: 110px;
+  }
+}

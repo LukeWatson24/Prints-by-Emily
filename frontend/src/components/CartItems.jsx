@@ -26,11 +26,13 @@ const CartItems = ({
         <img src={src} alt="" />
       </div>
       <div className="cart-right">
-        <h3 className="cart-item-name">{name}</h3>
-        <h3>{`Size: ${size}`}</h3>
-        <h3>{`Quantity: ${quant}`}</h3>
-        <h3>{priceFormatter.format(price)}</h3>
-        <button onClick={removeHandler}>Remove</button>
+        <p className="cart-item-name">{name}</p>
+        <p>{`Size: ${size}`}</p>
+        <p>{`Quantity: ${quant}`}</p>
+        <p className="cart-item-price">{priceFormatter.format(price)}</p>
+        <button className="cart-remove-button" onClick={removeHandler}>
+          Remove
+        </button>
       </div>
     </div>
   );
